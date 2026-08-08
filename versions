@@ -1,0 +1,108 @@
+#!/bin/bash
+# Prints out the version for most relevant software
+no_flag=true
+py_flag=false
+for arg in "$@"; do
+  if [ "$arg" = "-py" ]; then
+    py_flag=true
+    no_flag=false
+    break
+  fi
+done
+cloud_flag=false
+for arg in "$@"; do
+  if [ "$arg" = "-cl" ]; then
+    cloud_flag=true
+    no_flag=false
+    break
+  fi
+done
+
+##all python libraries when --py is called
+if [ "$py_flag" = true ]; then
+  pyvers=$(python3 --version)
+  echo "Python Version:"
+  if [[ $? != 0 ]]; then
+    echo "Not Installed"
+  else
+    echo "$pyvers"
+  fi
+  echo "_______________________________________________________________________________________________________________"
+fi
+
+if [ "$cloud_flag" = true ]; then
+  echo "MongoDB Shell Version:"
+  mongovers=$(mongosh --version 2>/dev/null)
+  if [[ $? != 0 ]]; then
+    echo "Not Installed"
+  else
+    echo "$mongovers"
+  fi
+  echo "_______________________________________________________________________________________________________________"
+fi
+##general case for literally everything
+if [ "$no_flag" = true ]; then
+  pyvers=$(python3 --version)
+  echo "Python Version:"
+  if [[ $? != 0 ]]; then
+    echo "Not Installed"
+  else
+    echo "$pyvers"
+  fi
+  echo "_______________________________________________________________________________________________________________"
+
+  pipvers=$(pip3 --version)
+  echo "Pip Version:"
+  if [[ $? != 0 ]]; then
+    echo "Not Installed"
+  else
+    echo "$pipvers"
+  fi
+  echo "_______________________________________________________________________________________________________________"
+
+  mysqlvers=$(mysql --version)
+  echo "MySQL Version:"
+  if [[ $? != 0 ]]; then
+    echo "Not Installed"
+  else
+    echo "$mysqlvers"
+  fi
+  echo "_______________________________________________________________________________________________________________"
+
+  gitvers=$(git --version)
+  echo "Git Version:"
+  if [[ $? != 0 ]]; then
+    echo "Not Installed"
+  else
+    echo "$gitvers"
+  fi
+  echo "_______________________________________________________________________________________________________________"
+
+  brewvers=$(brew --version)
+  echo "Homebrew Version:"
+  if [[ $? != 0 ]]; then
+    echo "Not Installed"
+  else
+    echo "$brewvers"
+  fi
+  echo "_______________________________________________________________________________________________________________"
+
+  echo "MongoDB Shell Version:"
+  mongovers=$(mongosh --version 2>/dev/null)
+  if [[ $? != 0 ]]; then
+    echo "Not Installed"
+  else
+    echo "$mongovers"
+  fi
+  echo "_______________________________________________________________________________________________________________"
+
+  echo "Postman Version:"
+  postmanvers=$(postman --version 2>/dev/null)
+  if [[ $? != 0 ]]; then
+    echo "Not Installed"
+  else
+    echo "$postmanvers"
+  fi
+  echo "_______________________________________________________________________________________________________________"
+  echo "END"
+fi
