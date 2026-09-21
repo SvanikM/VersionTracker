@@ -28,6 +28,14 @@ if [ "$py_flag" = true ]; then
     echo "$pyvers"
   fi
   echo "_______________________________________________________________________________________________________________"
+  pipvers=$(pip3 --version)
+  echo "Pip Version:"
+  if [[ $? != 0 ]]; then
+    echo "Not Installed"
+  else
+    echo "$pipvers"
+  fi
+  echo "_______________________________________________________________________________________________________________"
 fi
 
 if [ "$cloud_flag" = true ]; then
