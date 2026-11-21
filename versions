@@ -36,6 +36,14 @@ if [ "$py_flag" = true ]; then
     echo "$pipvers"
   fi
   echo "_______________________________________________________________________________________________________________"
+  fastapivers=$(fastapi --version)
+  echo "FastAPI Version:"
+  if [[ $? != 0 ]]; then
+    echo "Not Installed"
+  else
+    echo "$fastapivers"
+  fi
+  echo "_______________________________________________________________________________________________________________" 
 fi
 
 if [ "$cloud_flag" = true ]; then
