@@ -43,8 +43,26 @@ if [ "$py_flag" = true ]; then
   else
     echo "$fastapivers"
   fi
+  echo "_______________________________________________________________________________________________________________"
+  pydanticvers=$(pip show pydantic 2> /dev/null | head -n 2)
+  echo "Pydantic Version:"
+  if [[ $? != 0 ]]; then
+    echo "Not Installed"
+  else
+    echo "$pydanticvers"
+  fi
+  echo "_______________________________________________________________________________________________________________" 
+  flaskvers=$(flask --version | tail -n +2)
+  echo "Flask Version:"
+  if [[ $? != 0 ]]; then
+    echo "Not Installed"
+  else
+    echo "$flaskvers"
+  fi
   echo "_______________________________________________________________________________________________________________" 
 fi
+
+##END OF PYTHON START OF CLOUD
 
 if [ "$cloud_flag" = true ]; then
   echo "MongoDB Shell Version:"
